@@ -1,0 +1,25 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Gradle
+.gradle/
+
+# Build directories
+build/
+out/
+target/
+
+# Compiled class files
+*.class
+
+# Log files
+logs/
+*.log
+
+*.DS_Store
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
