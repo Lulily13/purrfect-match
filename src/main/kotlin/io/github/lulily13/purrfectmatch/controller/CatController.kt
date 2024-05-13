@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.server.ResponseStatusException
+import java.util.UUID
 
 @RestController
 @RequestMapping("/cats")
@@ -23,17 +24,17 @@ class CatController(
     }
 
     @GetMapping("/{id}")
-    fun getCat(@PathVariable id: Long): Cat {
+    fun getCat(@PathVariable id: UUID): Cat {
         return catService.getCat(id) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND)
     }
 
     @GetMapping("/{id}/summary")
-    fun getCatSummary(@PathVariable id: Long): CatSummary {
+    fun getCatSummary(@PathVariable id: UUID): CatSummary {
         return catService.getCatSummary(id) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND)
     }
 
     @GetMapping("/{id}/like")
-    fun likeCat(@PathVariable id: Long) {
+    fun likeCat(@PathVariable id: UUID) {
         return catService.likeCat(id)
     }
 }

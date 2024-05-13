@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.server.ResponseStatusException
+import java.util.UUID
 
 @RestController
 @RequestMapping("/admin")
@@ -35,17 +36,17 @@ class AdminController(
 
     @PostMapping("/cats")
     fun addCat(@RequestBody catInput: CatInput): Cat {
-        logger.info("Received input: $catInput")
-        return adminService.addCat()
+        // logger.info("Received input: $catInput")
+        return adminService.addCat(catInput)
     }
 
     @PutMapping("/cats/{id}")
-    fun updateCat(@PathVariable id: Long): Cat {
-        return adminService.updateCat(id) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND)
+    fun updateCat(@PathVariable id: UUID, @RequestBody catInput: CatInput): Cat {
+        return adminService.updateCat(id, catInput) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND)
     }
 
     @DeleteMapping("/cats/{id}")
-    fun deleteCat(@PathVariable id: Long) {
+    fun deleteCat(@PathVariable id: UUID): String {
         return adminService.deleteCat(id)
     }
 
